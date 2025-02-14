@@ -1,10 +1,66 @@
+import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:real_e_commerce/Core/Utils/App_Colors.dart';
+import 'package:real_e_commerce/Core/Utils/Widgets/Custom_Buttom.dart';
+import 'package:real_e_commerce/Features/On_Boarding/Presention/View/Widgets/On_Boarding_pageview.dart';
+import 'package:real_e_commerce/generated/l10n.dart';
 
-class OnBoardingBody extends StatelessWidget {
+class OnBoardingBody extends StatefulWidget {
   const OnBoardingBody({super.key});
 
   @override
+  State<OnBoardingBody> createState() => _OnBoardingBodyState();
+}
+
+class _OnBoardingBodyState extends State<OnBoardingBody> {
+  late PageController pageController;
+  int currentIndex = 0;
+  @override
+  void initState() {
+    pageController = PageController();
+    pageController.addListener(() {
+      setState(() {
+        currentIndex = pageController.page!.round();
+        print(currentIndex);
+      });
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    pageController.dispose();
+    // TODO: implement dispose
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Column(
+      children: [
+        Expanded(child: OnBoardingPageview(controller: pageController)),
+        SizedBox(height: 29),
+        DotsIndicator(
+          position: currentIndex.toDouble(),
+          dotsCount: 2,
+          decorator: DotsDecorator(
+            activeColor: AppColors.primaryColor,
+            color: const Color.fromARGB(143, 27, 94, 55),
+          ),
+        ),
+        SizedBox(height: 29),
+        Visibility(
+          visible: currentIndex == 1 ? true : false,
+          maintainSize: true,
+          maintainAnimation: true,
+          maintainState: true,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: CustomButtom(onPressed: () {}, text: 'ابدأ الان'),
+          ),
+        ),
+        SizedBox(height: 43),
+      ],
+    );
   }
 }
