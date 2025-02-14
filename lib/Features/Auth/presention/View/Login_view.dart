@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class AuthView extends StatelessWidget {
-  const AuthView({super.key});
-
+class LoginView extends StatelessWidget {
+  const LoginView({super.key});
+  static const String routeName = 'LoginView';
   @override
   Widget build(BuildContext context) {
     return const Placeholder();

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:real_e_commerce/Features/Auth/presention/View/Login_view.dart';
 
 class OnBoardingItem extends StatelessWidget {
   const OnBoardingItem({
@@ -22,7 +23,14 @@ class OnBoardingItem extends StatelessWidget {
           children: [
             Visibility(
               visible: visable,
-              child: Positioned(right: 20, top: 40, child: Text('تخطي')),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.of(
+                    context,
+                  ).pushReplacementNamed(LoginView.routeName);
+                },
+                child: Positioned(right: 20, top: 40, child: Text('تخطي')),
+              ),
             ),
             SvgPicture.asset(
               width: MediaQuery.of(context).size.width,

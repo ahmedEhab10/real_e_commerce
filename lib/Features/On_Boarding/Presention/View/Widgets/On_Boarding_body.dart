@@ -2,6 +2,7 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:real_e_commerce/Core/Utils/App_Colors.dart';
 import 'package:real_e_commerce/Core/Utils/Widgets/Custom_Buttom.dart';
+import 'package:real_e_commerce/Features/Auth/presention/View/Login_view.dart';
 import 'package:real_e_commerce/Features/On_Boarding/Presention/View/Widgets/On_Boarding_pageview.dart';
 import 'package:real_e_commerce/generated/l10n.dart';
 
@@ -56,7 +57,12 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
           maintainState: true,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: CustomButtom(onPressed: () {}, text: 'ابدأ الان'),
+            child: CustomButtom(
+              onPressed: () {
+                Navigator.of(context).pushReplacementNamed(LoginView.routeName);
+              },
+              text: 'ابدأ الان',
+            ),
           ),
         ),
         SizedBox(height: 43),
