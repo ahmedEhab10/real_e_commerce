@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:real_e_commerce/Core/Services/shared_preferences_Singlton.dart';
+import 'package:real_e_commerce/Core/Utils/App_Colors.dart';
 import 'package:real_e_commerce/Core/helper_function/on_genrate_route.dart';
 import 'package:real_e_commerce/Features/Splash/presention/view/Spalsh_View.dart';
 import 'package:real_e_commerce/generated/l10n.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferencesSinglton.init();
   runApp(const FruitHub());
 }
 
@@ -15,7 +19,11 @@ class FruitHub extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(fontFamily: 'Cairo'),
+      theme: ThemeData(
+        fontFamily: 'Cairo',
+        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
+      ),
+
       localizationsDelegates: [
         S.delegate,
         GlobalMaterialLocalizations.delegate,

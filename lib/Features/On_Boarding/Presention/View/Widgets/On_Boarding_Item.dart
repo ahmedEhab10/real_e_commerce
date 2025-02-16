@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:real_e_commerce/Constanat.dart';
+import 'package:real_e_commerce/Core/Services/shared_preferences_Singlton.dart';
 import 'package:real_e_commerce/Features/Auth/presention/View/Login_view.dart';
 
 class OnBoardingItem extends StatelessWidget {
@@ -25,6 +27,8 @@ class OnBoardingItem extends StatelessWidget {
               visible: visable,
               child: GestureDetector(
                 onTap: () {
+                  SharedPreferencesSinglton.setBool(onBoardingSeenKey, true);
+
                   Navigator.of(
                     context,
                   ).pushReplacementNamed(LoginView.routeName);

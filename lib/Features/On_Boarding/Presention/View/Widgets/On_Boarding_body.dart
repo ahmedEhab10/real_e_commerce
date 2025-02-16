@@ -1,10 +1,11 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:real_e_commerce/Constanat.dart';
+import 'package:real_e_commerce/Core/Services/shared_preferences_Singlton.dart';
 import 'package:real_e_commerce/Core/Utils/App_Colors.dart';
 import 'package:real_e_commerce/Core/Utils/Widgets/Custom_Buttom.dart';
 import 'package:real_e_commerce/Features/Auth/presention/View/Login_view.dart';
 import 'package:real_e_commerce/Features/On_Boarding/Presention/View/Widgets/On_Boarding_pageview.dart';
-import 'package:real_e_commerce/generated/l10n.dart';
 
 class OnBoardingBody extends StatefulWidget {
   const OnBoardingBody({super.key});
@@ -59,6 +60,7 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: CustomButtom(
               onPressed: () {
+                SharedPreferencesSinglton.setBool(onBoardingSeenKey, true);
                 Navigator.of(context).pushReplacementNamed(LoginView.routeName);
               },
               text: 'ابدأ الان',

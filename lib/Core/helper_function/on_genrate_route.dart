@@ -16,4 +16,5 @@ Route<dynamic>? OnGenrateRoutes(RouteSettings setting) {
     default:
       MaterialPageRoute(builder: (context) => const Scaffold());
   }
+  return null;
 }
