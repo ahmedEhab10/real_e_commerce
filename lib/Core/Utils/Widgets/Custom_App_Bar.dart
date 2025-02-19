@@ -6,6 +6,7 @@ PreferredSizeWidget buildAppBar({
   required title,
 }) {
   return AppBar(
+    backgroundColor: Colors.white,
     centerTitle: true,
     title: Text(title, style: TextStyles.bold19),
     leading: GestureDetector(

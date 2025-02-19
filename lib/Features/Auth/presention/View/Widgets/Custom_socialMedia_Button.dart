@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:real_e_commerce/Core/Utils/App_Text_Style.dart';
-import 'package:real_e_commerce/Core/Utils/App_images.dart';
 
 class CustomSocialmediaButton extends StatelessWidget {
   const CustomSocialmediaButton({
