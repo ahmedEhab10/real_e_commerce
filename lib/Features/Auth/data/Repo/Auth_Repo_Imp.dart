@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:real_e_commerce/Core/Errors/Exaption.dart';
 import 'package:real_e_commerce/Core/Errors/failuers.dart';
@@ -24,9 +25,31 @@ class AuthRepoImp extends AuthRepo {
 
       return Right(UserModel.fromFirebaseUser(user)); // maping user model
     } on Custom_Exaption catch (e) {
-      throw Left(ServerFailuers(e.message));
+      return Left(ServerFailuers(e.message));
     } catch (e) {
-      throw Left(ServerFailuers(e.toString()));
+      log(
+        'there is an error in firebase auth service . create user with email and password and ${e.toString()} ',
+      );
+      return Left(ServerFailuers('يوجد مشكله حاول مره اخري'));
+    }
+  }
+
+  @override
+  Future<Either<Failuers, UserEntity>> signInWithEmailAndPassword({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      var user = await firebaseAuthService.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      return Right(UserModel.fromFirebaseUser(user));
+    } catch (e) {
+      log(
+        'there is an error in firebase auth service . Sign in user with email and password and ${e.toString()} ',
+      );
+      return Left(ServerFailuers('يوجد مشكله حاول مره اخري'));
     }
   }
 }

@@ -7,7 +7,7 @@ import 'package:real_e_commerce/Features/Auth/domin/Repo/Auth_Repo.dart';
 
 final getIt = GetIt.instance;
 
-void setup() {
+void setupGetIt() {
   getIt.registerSingleton<FirebaseAuthService>(FirebaseAuthService());
   getIt.registerSingleton<AuthRepo>(
     AuthRepoImp(firebaseAuthService: getIt<FirebaseAuthService>()),

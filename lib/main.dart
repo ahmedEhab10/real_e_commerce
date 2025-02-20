@@ -1,7 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:real_e_commerce/Core/Services/custom_bloc_observer.dart';
+import 'package:real_e_commerce/Core/Services/get_it_Service.dart';
 import 'package:real_e_commerce/Core/Services/shared_preferences_Singlton.dart';
 import 'package:real_e_commerce/Core/Utils/App_Colors.dart';
 import 'package:real_e_commerce/Core/helper_function/on_genrate_route.dart';
@@ -10,9 +12,12 @@ import 'package:real_e_commerce/firebase_options.dart';
 import 'package:real_e_commerce/generated/l10n.dart';
 
 void main() async {
+  setupGetIt();
+  Bloc.observer = CustomBlocObserver();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   SharedPreferencesSinglton.init();
+
   runApp(const FruitHub());
 }
 

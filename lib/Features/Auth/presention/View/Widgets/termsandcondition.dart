@@ -3,7 +3,9 @@ import 'package:real_e_commerce/Core/Utils/App_Colors.dart';
 import 'package:real_e_commerce/Core/Utils/App_Text_Style.dart';
 
 class Termsandcondition extends StatefulWidget {
-  const Termsandcondition({super.key});
+  const Termsandcondition({super.key, required this.onChange});
+
+  final ValueChanged<bool> onChange;
 
   @override
   State<Termsandcondition> createState() => _TermsandconditionState();
@@ -23,6 +25,7 @@ class _TermsandconditionState extends State<Termsandcondition> {
             onChanged: (VALUE) {
               setState(() {
                 isActive = VALUE!;
+                widget.onChange(VALUE);
               });
             },
             activeColor: AppColors.primaryColor,

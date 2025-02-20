@@ -21,8 +21,13 @@ class SignUpCubit extends Cubit<SignUpState> {
           email, // احنا بنبعت هنا الاسم والايميل و الباسورد بس جوا الامبلينتيشن ريبو مش هاخد غير الي محتاجه الي هر الايميل والباسورد الي محتاجهم علشان ابعتهم للفايربيز
       password: password,
     );
-    result.fold((Failuers) {
-      return emit(signUpfail(Failuers.Massage));
-    }, (UserEntity user) => emit(Success(user)));
+    result.fold(
+      (Failuers) {
+        return emit(signUpfail(Failuers.Massage));
+      },
+      (UserEntity user) {
+        emit(Success(user));
+      },
+    );
   }
 }
