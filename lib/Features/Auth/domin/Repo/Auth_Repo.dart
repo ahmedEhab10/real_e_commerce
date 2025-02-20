@@ -4,6 +4,7 @@ import 'package:real_e_commerce/Features/Auth/domin/Entits/User_Entity.dart';
 
 abstract class AuthRepo {
   Future<Either<Failuers, UserEntity>> createUserWithEmailAndPassword({
+    required String name,
     required String email,
     required String password,
   });
