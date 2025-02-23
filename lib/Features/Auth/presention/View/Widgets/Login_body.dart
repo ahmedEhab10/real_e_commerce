@@ -86,16 +86,21 @@ class _LoginBodyState extends State<LoginBody> {
               CustomDivider(),
               SizedBox(height: 16),
               CustomSocialmediaButton(
+                onPressed: () {
+                  context.read<LogInCubit>().signInWithGoogle();
+                },
                 text: 'تسجيل بواسطة جوجل',
                 image: Assets.assetsSvgSocialIcons,
               ),
               const SizedBox(height: 16),
               CustomSocialmediaButton(
+                onPressed: () {},
                 text: 'تسجيل بواسطة أبل',
                 image: Assets.assetsSvgAppleIcons,
               ),
               const SizedBox(height: 16),
               CustomSocialmediaButton(
+                onPressed: () {},
                 text: 'تسجيل بواسطة فيسبوك',
                 image: Assets.assetsSvgFacebookIcons,
               ),

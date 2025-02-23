@@ -1,5 +1,7 @@
 import 'package:get_it/get_it.dart';
+import 'package:real_e_commerce/Core/Services/DataBase_Service.dart';
 import 'package:real_e_commerce/Core/Services/FireBase_Auth_Service.dart';
+import 'package:real_e_commerce/Core/Services/Fire_Base_store_Service.dart';
 import 'package:real_e_commerce/Features/Auth/data/Repo/Auth_Repo_Imp.dart';
 import 'package:real_e_commerce/Features/Auth/domin/Repo/Auth_Repo.dart';
 
@@ -8,8 +10,12 @@ import 'package:real_e_commerce/Features/Auth/domin/Repo/Auth_Repo.dart';
 final getIt = GetIt.instance;
 
 void setupGetIt() {
+  getIt.registerSingleton<DatabaseService>(FireBaseStoreService());
   getIt.registerSingleton<FirebaseAuthService>(FirebaseAuthService());
   getIt.registerSingleton<AuthRepo>(
-    AuthRepoImp(firebaseAuthService: getIt<FirebaseAuthService>()),
+    AuthRepoImp(
+      firebaseAuthService: getIt<FirebaseAuthService>(),
+      databaseService: getIt<DatabaseService>(),
+    ),
   );
 }

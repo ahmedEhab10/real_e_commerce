@@ -7,8 +7,10 @@ class CustomSocialmediaButton extends StatelessWidget {
     super.key,
     required this.text,
     required this.image,
+    required this.onPressed,
   });
   final String text, image;
+  final Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class CustomSocialmediaButton extends StatelessWidget {
         side: BorderSide(width: 1, color: Color(0xFFDDDFDF)),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       ),
-      onPressed: () {},
+      onPressed: onPressed,
       child: ListTile(
         visualDensity: VisualDensity(vertical: VisualDensity.minimumDensity),
         leading: SvgPicture.asset(image),
