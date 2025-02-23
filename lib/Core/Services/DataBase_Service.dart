@@ -1,5 +1,3 @@
-import 'package:real_e_commerce/Features/Auth/domin/Entits/User_Entity.dart';
-
 abstract class DatabaseService {
   Future<void> addData({
     required String path,

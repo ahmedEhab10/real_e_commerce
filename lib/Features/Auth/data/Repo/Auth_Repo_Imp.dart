@@ -42,7 +42,7 @@ class AuthRepoImp extends AuthRepo {
 
       await addUserData(user: user_from_usermodel);
 
-      return Right(user_from_usermodel); // maping user model
+      return Right(user_from_usermodel);
     } on Custom_Exaption catch (e) {
       if (user != null) {
         await firebaseAuthService.deleteUser();
