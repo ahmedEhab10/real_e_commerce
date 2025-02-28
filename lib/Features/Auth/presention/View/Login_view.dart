@@ -7,6 +7,7 @@ import 'package:real_e_commerce/Core/helper_function/buld_error_bar.dart';
 import 'package:real_e_commerce/Features/Auth/domin/Repo/Auth_Repo.dart';
 import 'package:real_e_commerce/Features/Auth/presention/View/Widgets/Login_body.dart';
 import 'package:real_e_commerce/Features/Auth/presention/cubits/login_cubit/cubit/log_in_cubit.dart';
+import 'package:real_e_commerce/Features/Home/Presetation/view/home_view.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
@@ -32,6 +33,7 @@ class Login_body_bloc_consumer extends StatelessWidget {
     return BlocConsumer<LogInCubit, LogInState>(
       listener: (context, state) {
         if (state is LogInSuccess) {
+          Navigator.pushNamed(context, HomeView.routeName);
           Error_bar(context, 'Welcoem Hobaa');
         }
         if (state is LogInFailure) {
