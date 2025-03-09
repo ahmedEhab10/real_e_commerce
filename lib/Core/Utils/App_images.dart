@@ -50,6 +50,10 @@ class Assets {
   /// assets/Svg/Apple_Icons.svg
   static const String assetsSvgAppleIcons = "assets/Svg/Apple_Icons.svg";
 
+  /// Assets for assetsSvgArrowSwapHorizontal
+  /// assets/Svg/arrow-swap-horizontal.svg
+  static const String assetsSvgArrowSwapHorizontal = "assets/Svg/arrow-swap-horizontal.svg";
+
   /// Assets for assetsSvgAxctiveUserIcon
   /// assets/Svg/Axctive_user_icon.svg
   static const String assetsSvgAxctiveUserIcon = "assets/Svg/Axctive_user_icon.svg";
@@ -113,5 +117,9 @@ class Assets {
   /// Assets for assetsSvgSplashViewBottom
   /// assets/Svg/splash_view_bottom.svg
   static const String assetsSvgSplashViewBottom = "assets/Svg/splash_view_bottom.svg";
+
+  /// Assets for assetsSvgTrash
+  /// assets/Svg/trash.svg
+  static const String assetsSvgTrash = "assets/Svg/trash.svg";
 }
 

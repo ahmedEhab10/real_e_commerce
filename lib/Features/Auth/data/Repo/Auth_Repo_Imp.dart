@@ -1,11 +1,14 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:real_e_commerce/Constanat.dart';
 import 'package:real_e_commerce/Core/Errors/Exaption.dart';
 import 'package:real_e_commerce/Core/Errors/failuers.dart';
 import 'package:real_e_commerce/Core/Services/DataBase_Service.dart';
 
 import 'package:real_e_commerce/Core/Services/FireBase_Auth_Service.dart';
+import 'package:real_e_commerce/Core/Services/shared_preferences_Singlton.dart';
 import 'package:real_e_commerce/Core/Utils/Backend_const.dart';
 
 import 'package:real_e_commerce/Features/Auth/data/Models/User_Model.dart';
@@ -72,6 +75,10 @@ class AuthRepoImp extends AuthRepo {
       var userEntity = await getUserData(
         userId: user.uid,
       ); // return UserModel.fromJson(userdata);
+
+      SaveUserData(
+        user: userEntity,
+      ); //بناخد الداتا من الداتا بيز او من الفايرستور بمعني اصح ونخزنه في الجهاز علشان وقت منحب نستدعي نجيبه بسرعه
       return Right(userEntity);
     } catch (e) {
       log(
@@ -105,7 +112,7 @@ class AuthRepoImp extends AuthRepo {
   Future addUserData({required UserEntity user}) async {
     await databaseService.addData(
       path: 'users',
-      data: user.toMap(),
+      data: UserModel.fromUserEntity(user).toMap(),
       documentId: user.userId,
     );
   }
@@ -118,5 +125,11 @@ class AuthRepoImp extends AuthRepo {
     );
 
     return UserModel.fromJson(userdata);
+  }
+
+  @override
+  Future SaveUserData({required UserEntity user}) async {
+    var jsondata = jsonEncode(UserModel.fromUserEntity(user).toMap());
+    await SharedPreferencesSinglton.setString(KUserData, jsondata);
   }
 }

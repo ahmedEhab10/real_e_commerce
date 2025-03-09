@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:real_e_commerce/Core/Utils/App_Colors.dart';
 import 'package:real_e_commerce/Core/Utils/App_Text_Style.dart';
-import 'package:real_e_commerce/Core/Utils/App_images.dart';
+import 'package:real_e_commerce/Core/entites/product_entitey.dart';
 
 class FruitItem extends StatelessWidget {
-  const FruitItem({super.key});
+  const FruitItem({super.key, required this.product});
+  final ProductEntitey product;
 
   @override
   Widget build(BuildContext context) {
@@ -15,19 +16,15 @@ class FruitItem extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.favorite_border_outlined),
-          ),
           Positioned.fill(
             child: Column(
               children: [
                 SizedBox(height: 24),
-                Image.asset(Assets.assetsImagesBate5Test),
+                Flexible(child: Image.network(product.imageUrl!)),
 
                 ListTile(
                   title: Text(
-                    'بطيخ',
+                    product.name!,
                     textAlign: TextAlign.right,
                     style: TextStyles.semiBold16,
                   ),
@@ -36,7 +33,7 @@ class FruitItem extends StatelessWidget {
                     TextSpan(
                       children: [
                         TextSpan(
-                          text: '20جنية',
+                          text: '${product.price}جنية',
                           style: TextStyles.bold13.copyWith(
                             color: AppColors.secondColor,
                           ),
@@ -72,6 +69,10 @@ class FruitItem extends StatelessWidget {
                 ),
               ],
             ),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.favorite_border_outlined),
           ),
         ],
       ),

@@ -85,4 +85,8 @@ class FirebaseAuthService {
       throw Custom_Exaption(message: 'لقد حدث خطأ ما. حاول مره اخري');
     }
   }
+
+  bool isSignedIn() {
+    return FirebaseAuth.instance.currentUser != null;
+  }
 }

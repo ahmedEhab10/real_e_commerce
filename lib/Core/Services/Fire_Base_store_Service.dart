@@ -17,12 +17,35 @@ class FireBaseStoreService implements DatabaseService {
   }
 
   @override
-  Future<Map<String, dynamic>> getData({
+  Future<dynamic> getData({
     required String path,
-    required String documentId,
+    String? documentId,
+    Map<String, dynamic>? query,
   }) async {
-    var data = await firestore.collection(path).doc(documentId).get();
+    if (documentId != null) {
+      var data = await firestore.collection(path).doc(documentId).get();
 
-    return data.data()! as Map<String, dynamic>;
+      return data.data()! as Map<String, dynamic>;
+    } else {
+      Query<Map<String, dynamic>> data = firestore.collection(path);
+      if (query != null) {
+        if (query['orderBy'] != null) {
+          var orderBy = query['orderBy'];
+          var descending = query['descending'] ?? false;
+          data = data.orderBy(orderBy, descending: descending);
+        }
+
+        if (query['limit'] != null) {
+          var limit = query['limit'];
+          data = data.limit(limit);
+        }
+      }
+
+      var result = await data.get();
+
+      return result.docs.map((e) {
+        return e.data();
+      }).toList();
+    }
   }
 }

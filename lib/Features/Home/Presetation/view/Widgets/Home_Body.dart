@@ -1,13 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:real_e_commerce/Core/Utils/Widgets/Fruit_Item.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:real_e_commerce/Core/Utils/Widgets/SearchTextField%20.dart';
+import 'package:real_e_commerce/Core/cubits/Products_cubit/products_cubit.dart';
+import 'package:real_e_commerce/Features/Home/Presetation/view/Widgets/BestSellingGrEdBlocBuilder.dart';
 import 'package:real_e_commerce/Features/Home/Presetation/view/Widgets/Best_Selling_header.dart';
 import 'package:real_e_commerce/Features/Home/Presetation/view/Widgets/Featured_Item_List.dart';
 import 'package:real_e_commerce/Features/Home/Presetation/view/Widgets/custom_home_page_app_bar.dart';
 import 'package:real_e_commerce/Features/Home/Presetation/view/Widgets/fruit_grade_view.dart';
 
-class HomeViewBody extends StatelessWidget {
+class HomeViewBody extends StatefulWidget {
   const HomeViewBody({super.key});
+
+  @override
+  State<HomeViewBody> createState() => _HomeViewBodyState();
+}
+
+class _HomeViewBodyState extends State<HomeViewBody> {
+  @override
+  void initState() {
+    BlocProvider.of<ProductsCubit>(context).getBestProducts();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +41,7 @@ class HomeViewBody extends StatelessWidget {
               ],
             ),
           ),
-          FruitGradeView(),
+          BestSellingGrEdBlocBuilder(),
         ],
       ),
     );

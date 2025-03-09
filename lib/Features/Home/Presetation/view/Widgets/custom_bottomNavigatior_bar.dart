@@ -5,8 +5,8 @@ import 'package:real_e_commerce/Core/Utils/App_Text_Style.dart';
 import 'package:real_e_commerce/Features/Home/domain/entites/Bottom_Navigation_Bar_Entity.dart';
 
 class CustomBottomnavigatiorBar extends StatefulWidget {
-  const CustomBottomnavigatiorBar({super.key});
-
+  CustomBottomnavigatiorBar({super.key, required this.onItemTapped});
+  final ValueChanged<int> onItemTapped;
   @override
   State<CustomBottomnavigatiorBar> createState() =>
       _CustomBottomnavigatiorBarState();
@@ -45,6 +45,7 @@ class _CustomBottomnavigatiorBarState extends State<CustomBottomnavigatiorBar> {
                   onTap: () {
                     setState(() {
                       selectedIndex = index;
+                      widget.onItemTapped(index);
                     });
                   },
                   child: navigatorIcon(
